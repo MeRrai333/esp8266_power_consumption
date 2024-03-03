@@ -118,8 +118,25 @@ void loop() {
             millisOledStep = millis();
         }
         if(!digitalRead(BTN)){
-            while(!digitalRead(BTN))
+            unsigned long millisBTN = millis();
+            while(!digitalRead(BTN)){
+                if(millis() - millisBTN > 10000){
+                    if(millis() - millisOled > OLEDREFRESH){
+                        display.clearDisplay();
+                        display.setFont(&FreeMono9pt7b);
+                        display.setTextSize(1);
+                        display.setTextColor(WHITE);
+                        display.setCursor(0, 10);
+                        display.print("Reset");
+                        display.setCursor(0, 30);
+                        display.print("Act. Energy");
+                        display.display();
+                        pzem.resetEnergy();
+                        millisOled = millis();
+                    }
+                }
                 yield();
+            }
             (oledDisplayStep + 1 >= 6) ? oledDisplayStep = 0 : oledDisplayStep++;
             Serial.println(oledDisplayStep);
             millisOledStep = millis();
@@ -204,7 +221,7 @@ void oledDisplay(){
         oledDisplayFormat("Power", String(powe)+"W");
     }
     else if(oledDisplayStep == 3){
-        oledDisplayFormat("Energy", String(ener)+"Wh");
+        oledDisplayFormat("Energy", String(ener)+"kWh");
     }
     else if(oledDisplayStep == 4){
         oledDisplayFormat("Frequency", String(freq)+"Hz");
