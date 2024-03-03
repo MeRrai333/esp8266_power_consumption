@@ -21,8 +21,8 @@
 
 /* ==== LINE ==== */
 #define LINEURL "https://notify-api.line.me/api/notify"
-#define LINETOKEN "OAjta4ZQbqKeaENdEWiT6rScDMjNSiVWTMcJAOWGA71"
-char lineTokenChar[50] = "OAjta4ZQbqKeaENdEWiT6rScDMjNSiVWTMcJAOWGA71";
+#define LINETOKEN "Yours line token"
+char lineTokenChar[50] = "Yours line token";
 int lineMin = 0;
 unsigned long millisLine = 0, millisLineTemp = 0;
 /* ==== LINE ==== */
