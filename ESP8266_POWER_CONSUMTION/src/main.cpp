@@ -72,12 +72,11 @@ void lineNotify();
 /* ==== State Machine ==== */
 #define WIFICONNECTIONSTATE 0
 #define INFLUXCONNECTIONSTATE 1
-#define SERVERCONNEcTION 2
-#define OLEDDISPLAY 3
-#define PZEM004STATE 4
-#define LINENOTISTATE 5
-#define INFLUXDBSENDSTATE 6
-#define INFLUXRECONSTATE 7
+#define OLEDDISPLAY 2
+#define PZEM004STATE 3
+#define LINENOTISTATE 4
+#define INFLUXDBSENDSTATE 5
+#define INFLUXRECONSTATE 6
 
 byte state;
 /* ==== State Machine ==== */
@@ -132,7 +131,7 @@ void loop() {
         if(WiFi.status() == WL_CONNECTED)
             state = LINENOTISTATE;
         else
-            state = OLEDDISPLAY;
+            state = INFLUXCONNECTIONSTATE;
         millisPzem = millis();
     }
     else if(state == LINENOTISTATE){
