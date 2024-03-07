@@ -91,6 +91,7 @@ void setup() {
     display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
     display.clearDisplay();
     display.setFont(&FreeMono9pt7b);
+    display.setRotation(2);
     state = WIFICONNECTIONSTATE;
     millisPzem = millis();
     millisOled = millis();
@@ -181,10 +182,10 @@ void loop() {
             }
         }
         else{
-            std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);
-            client->setInsecure();
+            std::unique_ptr<BearSSL::WiFiClientSecure>clientLine(new BearSSL::WiFiClientSecure);
+            clientLine->setInsecure();
             HTTPClient https;
-            https.begin(*client, LINEURL);
+            https.begin(*clientLine, LINEURL);
             https.addHeader("Authorization","Bearer "+String(lineTokenChar));
             https.addHeader("Content-Type", "application/x-www-form-urlencoded");
             String httpData = "message=ESP8266%20PZEM004T%20Online";
@@ -260,10 +261,10 @@ void pzem004StateFunc(){
 }
 
 void lineNotify(){
-    std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);
-    client->setInsecure();
+    std::unique_ptr<BearSSL::WiFiClientSecure>clientLine(new BearSSL::WiFiClientSecure);
+    clientLine->setInsecure();
     HTTPClient https;
-    https.begin(*client, LINEURL);
+    https.begin(*clientLine, LINEURL);
     https.addHeader("Authorization","Bearer "+String(lineTokenChar));
     https.addHeader("Content-Type", "application/x-www-form-urlencoded");
     String msg = "%0AVoltage:%20"+String(volt)+"%20V";
@@ -341,16 +342,6 @@ void wifiConnection(){
         delay(10);
         EEPROM.commit();
     }
-    std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);
-    client->setInsecure();
-    HTTPClient https;
-    https.begin(*client, LINEURL);
-    https.addHeader("Authorization","Bearer "+String(lineTokenChar));
-    https.addHeader("Content-Type", "application/x-www-form-urlencoded");
-    String httpData = "message=ESP8266%20PZEM004T%20Online";
-    Serial.println(httpData);
-    int resCode = https.POST(httpData);
-    Serial.println("Line noty Res. code: "+String(resCode));
 }
 
 void influxConnection(){
@@ -380,6 +371,17 @@ void influxConnection(){
     Serial.println("Line Token: "+String(lineTokenChar));
     Serial.println("Line notyify min.: "+String(lineMin));
     Serial.println("milisLine: "+String(millisLine));
+    std::unique_ptr<BearSSL::WiFiClientSecure>clientLine(new BearSSL::WiFiClientSecure);
+    clientLine->setInsecure();
+    HTTPClient https;
+    https.begin(*clientLine, LINEURL);
+    https.addHeader("Authorization","Bearer "+String(lineTokenChar));
+    https.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    String httpData = "message=ESP8266%20PZEM004T%20Online";
+    Serial.println(httpData);
+    int resCode = https.POST(httpData);
+    Serial.println("Line noty Res. code: "+String(resCode));
+
     client.setConnectionParams(String(url), String(org), String(bucket), String(token));
     timeSync(TZ_INFO, "pool.ntp.org", "time.nis.gov");
     if (client.validateConnection()) {
