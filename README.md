@@ -15,14 +15,14 @@ This is mini project for IoT subject <br/><br/>
 </ul>
 <br/>
 <h3>Circuit diagram</h3>
-![alt text](https://raw.githubusercontent.com/MeRrai333/esp8266_power_consumption/master/image/IoT_Mini_Project_Circuit.jpg)
+![alt text](https://github.com/MeRrai333/esp8266_power_consumption/master/image/IoT_Mini_Project_Circuit.jpg?raw=true)
 <br/>
 <h3>State diagram</h3>
-![alt text](https://raw.githubusercontent.com/MeRrai333/esp8266_power_consumption/master/image/IoT_Mini_Project_State.jpg)
+![alt text](https://github.com/MeRrai333/esp8266_power_consumption/master/image/IoT_Mini_Project_State.jpg?raw=true)
 <br/>
 <h3>Dashboard</h3>
-![alt text](https://raw.githubusercontent.com/MeRrai333/esp8266_power_consumption/master/image/dash1.png)
-![alt text](https://raw.githubusercontent.com/MeRrai333/esp8266_power_consumption/master/image/dash2.png)
+![alt text](https://github.com/MeRrai333/esp8266_power_consumption/master/image/dash1.png?raw=true)
+![alt text](https://github.com/MeRrai333/esp8266_power_consumption/master/image/dash2.png?raw=true)
 <br/>
 <h3>Line notify</h3>
 ![alt text](https://raw.githubusercontent.com/MeRrai333/esp8266_power_consumption/master/image/line_notify.jpg)
