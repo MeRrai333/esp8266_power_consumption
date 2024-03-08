@@ -15,7 +15,7 @@ This is mini project for IoT subject <br/><br/>
 </ul>
 <br/>
 <h3>Circuit diagram</h3>
-![alt text](image/IoT_Mini_Project_Circuit.jpg)
+![alt text](https://github.com/MeRrai333/esp8266_power_consumption/blob/ea0e260f52aa2005c7ec0117b09437ea22b4d19c/image/IoT_Mini_Project_Circuit.jpg)
 <br/>
 <h3>State diagram</h3>
 ![alt text](https://github.com/MeRrai333/esp8266_power_consumption/blob/master/image/IoT_Mini_Project_State.jpg?raw=true)
